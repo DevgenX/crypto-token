@@ -1,4 +1,11 @@
+import { useState, useEffect, useContext, createContext } from "react";
+import Image from "next/image";
+
+import { useAppContext } from "../context/FunToken";
+
 const Home = () => {
-  return <div>Home</div>;
+  const { funToken } = useAppContext();
+
+  return <div>{funToken}</div>;
 };
 export default Home;
