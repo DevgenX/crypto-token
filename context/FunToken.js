@@ -26,7 +26,6 @@ export const ERC2OProvider = ({ children }) => {
   const [TokenOwnerBalance, setTokenOwnerBalance] = useState("");
 
   //--- CONNECTING WALLET TO APPLICATION
-
   const checkConnection = async () => {
     try {
       // check if metamask exist and if they have wallet
@@ -40,7 +39,7 @@ export const ERC2OProvider = ({ children }) => {
       //--- CREATING CONNECTION TO CONTRACT AND FETCH DATA
       const web3modal = new Web3Modal();
       const connection = await web3modal.connect();
-      const provider = new ethers.provider.Web3Provider(connection);
+      const provider = new ethers.providers.Web3Provider(connection);
       // get the signer of the contract, who approved the connect
       const signer = provider.getSigner();
       const contract = fetchContractERC20(signer);
@@ -62,7 +61,7 @@ export const ERC2OProvider = ({ children }) => {
       //-- CONNECTION
       const web3modal = new Web3Modal();
       const connection = await web3modal.connect();
-      const provider = new ethers.provider.Web3Provider(connection);
+      const provider = new ethers.providers.Web3Provider(connection);
       // get the signer of the contract, who approved the connect
       const signer = provider.getSigner(
         "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
@@ -95,7 +94,7 @@ export const ERC2OProvider = ({ children }) => {
       const balance = await contract.balanceOf(
         "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
       );
-      setTokenOwnerBalance(balance);
+      setTokenOwnerBalance(balance.toNumber());
     } catch (error) {
       console.log("Error in ERC20 Token", error);
     }
@@ -105,7 +104,7 @@ export const ERC2OProvider = ({ children }) => {
     try {
       const web3modal = new Web3Modal();
       const connection = await web3modal.connect();
-      const provider = new ethers.provider.Web3Provider(connection);
+      const provider = new ethers.providers.Web3Provider(connection);
       // get the signer of the contract, who approved the connect
       const signer = provider.getSigner();
       const contract = fetchContractERC20(signer);
@@ -123,7 +122,7 @@ export const ERC2OProvider = ({ children }) => {
     try {
       const web3modal = new Web3Modal();
       const connection = await web3modal.connect();
-      const provider = new ethers.provider.Web3Provider(connection);
+      const provider = new ethers.providers.Web3Provider(connection);
       // get the signer of the contract, who approved the connect
       const signer = provider.getSigner();
       const contract = fetchContractERC20(signer);
@@ -148,6 +147,7 @@ export const ERC2OProvider = ({ children }) => {
         tokenHolderData,
         account,
         accountBalance,
+        holders,
         userId,
         totalNumTokens,
         TokenStandard,
